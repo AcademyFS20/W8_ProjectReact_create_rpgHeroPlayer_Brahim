@@ -1,19 +1,21 @@
 import React from "react";
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom"
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import './index.css'
 import {
-    Home, About, FAQ, Error, Person
+    Home, About, FAQ, Error, Character
 } from "./pages"
 
 import {
     Footer, Navbar, Sidebar
 } from "./components"
 
+
+
 function App() {
     return (
         <Router>
-           <Navbar />
-            <Sidebar />
+            <Navbar />
+            {/* <Sidebar /> */}
             <Switch>
                 <Route exact path="/">
                     <Home />
@@ -21,8 +23,8 @@ function App() {
                 <Route path="/about">
                     <About />
                 </Route>
-                <Route path="/person">
-                    <Person />
+                <Route path="/character">
+                    <Character />
                 </Route>
                 <Route path="/faq">
                     <FAQ />
@@ -32,7 +34,7 @@ function App() {
                 </Route>
             </Switch>
 
-           <Footer />
+            <Footer />
         </Router>
     );
 }

@@ -14,18 +14,13 @@ export const navLinks = [
     },
     {
         id: 3,
-        url: "/person",
-        text: "Person"
+        url: "/character",
+        text: "Create Character"
     },
     {
         id: 4,
         url: "/faq",
         text: "FAQ"
     }
-
-
-
-
-
 
 ]

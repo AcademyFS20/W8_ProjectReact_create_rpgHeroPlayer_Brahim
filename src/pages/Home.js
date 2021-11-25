@@ -3,8 +3,8 @@ import styled from "styled-components";
 import heropic1 from "../assets/pictures/heropic1.jpg";
 import ArmsCard from "../components/ArmsCard";
 import Carousel from "../components/Carousel";
-import IconReact from "../components/icons/IconReact";
-import { FaEnvelope } from "react-icons/fa"
+import { FaEnvelope } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function Home() {
     const image = heropic1;
@@ -22,9 +22,11 @@ function Home() {
                         <h1>Discover More</h1>
                         <p>We have released new characters, check it out</p>
                     </div>
+                    <Link to= "/character"> 
                     <button type="button" className="btn">
-                        Discover
-                    </button>
+         
+                       Discover
+                    </button></Link>
                 </div>
             </section>
             <section className="caro">
@@ -42,15 +44,42 @@ function Home() {
                             ADVENTUM
                         </p>
                         <p>
-                            with the sheer arsenal of blades, axes, bows, and everything else<br />
+                            with the sheer arsenal of blades, axes, bows, and everything else
+                            <br />
                             along the same lines being iconic for all the right reasons.
                         </p>
                     </div>
                 </div>
                 <div className="armsCards">
-                    <ArmsCard />
-                    <ArmsCard />
-                    <ArmsCard />
+                    <ArmsCard
+                        iconName="BatteredAxe"
+                        title="Battleaxe"
+                        paragraph="Designed to cut legs and arms, the battleaxe has a narrow, 
+                        slicing blade resulting in deep and terrible wounds.
+                         they were not impervious to the effect of a well-placed axe stroke.
+                          A battleaxe could crush through armor and easily cut flesh."
+                    />
+                    <ArmsCard
+                        iconName="Claymore"
+                        title="Claymore"
+                        paragraph="The two-handed, used by the Highlanders of Scotland,
+                         was a large sword in the Medieval period used in the constant clan warfare
+                          and border fights with the English from circa 1500 to 1700.
+                          e used for their slashing and crushing ability as well as their easiness to make/fashion."
+                    />
+                    <ArmsCard
+                        iconName="EnglishLongBow"
+                        title="English Longbow"
+                        paragraph="The English longbow, also called the Welsh longbow, was a powerful type
+                         of medieval longbow (a tall bow for archery) about 6 ft 6 in (2.0 m) long used by the English,
+                         Scots and Welsh, both for hunting and as a weapon in medieval warfare."
+                    />
+                    <ArmsCard
+                        iconName="Flail"
+                        title="Flail"
+                        paragraph="The flail is a medieval weapon made of one (or more) weights attached to a handle with a hinge or chain.
+                         There is some disagreement over the names for this weapon; commonly used in Europe from the 13th century to the 15th century."
+                    />
                 </div>
             </section>
             <section className="emailForm">
@@ -58,8 +87,16 @@ function Home() {
                     <h2>Connect with us for gaming updates</h2>
                     <div class="newsletter-box">
                         <FaEnvelope size={40} />
-                        <input class="emailbox" type="email" name="" value="" placeholder="Enter your email id" />
-                        <button type="button" name="button">Subscribe</button>
+                        <input
+                            class="emailbox"
+                            type="email"
+                            name=""
+                            value=""
+                            placeholder="Enter your email id"
+                        />
+                        <button type="button" name="button">
+                            Subscribe
+                        </button>
                     </div>
                 </form>
             </section>
@@ -107,7 +144,7 @@ justify-content:center;
      
         width:233px;
         height:55px;
-        background-color: rgba(255, 227, 46, 1);
+        background-color: var(--color-primary);
         border:white;
         color:white;
         font-weight : bold ;
@@ -118,7 +155,7 @@ justify-content:center;
     
     .btn:hover{
         background-color:white;
-        color: rgba(255, 227, 46, 1);
+        color: var(--color-primary);
         font-weight : bold ;
 
     
@@ -131,7 +168,7 @@ justify-content:center;
 }
 
 .caro{
-min-height:377px;
+min-height:466px;
 max-height:612px;
 text-align:center;
 margin:55px;
@@ -145,9 +182,9 @@ margin:55px;
     flex-direction: column;
     align-items: center;
     justify-content: center;; 
-    min-height:612px;
+    min-height:701px;
     gap:34px;
-    background-color: rgba(255, 227, 46, 0.4);
+    background-color: var(--color-primary-4);
 
     .armsText{
         display: flex;
@@ -163,10 +200,11 @@ margin:55px;
         justify-content: space-between;
         gap:21px;    
         margin-top:-155px:
+      
     }   
 }
 .emailForm{
-    min-height:377px;
+    min-height:466px;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -193,7 +231,7 @@ margin:55px;
 }
 .newsletter button {
     width: 233px;
-    background-color: rgba(255, 227, 46, 1);
+    background-color: var(--color-primary);
     border: none;
     padding: 5px 10px;
     height: 38px;

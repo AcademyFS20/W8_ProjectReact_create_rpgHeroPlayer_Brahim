@@ -69,7 +69,7 @@ height:55px;
 
     a   {
         text-decoration: none;
-        color:rgba(255, 227, 66, 1);
+        color:var(--color-primary);
     }
 
     li {  list-style-type: none;

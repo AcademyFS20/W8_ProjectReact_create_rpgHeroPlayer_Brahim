@@ -16,9 +16,9 @@ const Footer = () => {
     return (
         <Wrapper>
             <div className="infos">
-                <h2>RpgGame</h2>
+                <h2>ADVENTUM</h2>
                 <div className="para">
-                <p> Rpg Game a platform for creating your characters</p>
+                <p> Adventum a platform for creating your characters</p>
                 <p>and start your adventure</p>
                 </div>
                 <div className ="contacts">
@@ -75,7 +75,7 @@ color:white;
 
     a   {
         text-decoration: none;
-        color:rgba(255, 227, 66, 1);
+        color:var(--color-primary);
     }
 
     li {  list-style-type: none;

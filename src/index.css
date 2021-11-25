@@ -10,6 +10,12 @@
     --max-width: 1170px;
     --fixed-width: 620px;
 
+    --color-primary:rgba(255, 191, 0, 0.925);
+    --color-primary-4:rgba(255, 222, 0, 0.4);
+    --color-primary-2:rgba(255, 222, 0, 0.2);
+    --color-secondary:rgba(255, 222, 0, 1);
+    --color-secondary-4: rgba(255, 222, 0, 0.4);
+    --color-secondary-2: rgba(255, 222, 0, 0.2);
 
     --font-base: 'Montserrat', "Arial", sans-serif;
     --font-titles:'Cinzel Decorative', cursive;
@@ -31,10 +37,14 @@
   }
 
   html{
+
+    scroll-behavior: smooth;
     font-size: 100%;
-    font-family: var(--font-base)
+    font-family: var(--font-base);
   }
 
   h1,h2, h3 {
     font-family: var(--font-titles);
   }
+
+

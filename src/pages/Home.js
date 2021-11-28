@@ -22,30 +22,28 @@ function Home() {
                         <h1>Discover More</h1>
                         <p>We have released new characters, check it out</p>
                     </div>
-                    <Link to= "/character"> 
-                    <button type="button" className="btn">
-         
-                       Discover
-                    </button></Link>
+                    <Link to="/character">
+                        <button type="button" className="btn">
+
+                            Discover
+                        </button></Link>
                 </div>
             </section>
             <section className="caro">
-                <h2>Our costum game characters</h2>
+                <h2>Our costumed game characters</h2>
                 <div>
                     <Carousel className="carousel" />
                 </div>
             </section>
             <section className="arms">
                 <div className="armsText">
-                    <h2>Pick your sword</h2>
+                    <h2>Pick your weapon</h2>
                     <div cl>
                         <p>
                             The weapons are undoubtedly some of the most iconic aspects of
                             ADVENTUM
-                        </p>
-                        <p>
+
                             with the sheer arsenal of blades, axes, bows, and everything else
-                            <br />
                             along the same lines being iconic for all the right reasons.
                         </p>
                     </div>
@@ -92,7 +90,7 @@ function Home() {
                             type="email"
                             name=""
                             value=""
-                            placeholder="Enter your email id"
+                            placeholder="Enter your email"
                         />
                         <button type="button" name="button">
                             Subscribe
@@ -177,11 +175,13 @@ display:grid;
 h2{
 margin:55px;
 }
+
+
 .arms{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;; 
+    justify-content: space-evenly; 
     min-height:701px;
     gap:34px;
     background-color: var(--color-primary-4);
@@ -191,7 +191,9 @@ margin:55px;
         flex-direction: row;
         align-items: center;
         justify-content: center; 
-        gap:144px; 
+        gap:89px; 
+        width:1146px;
+        
     }
     .armsCards{
         display: flex;
@@ -199,7 +201,6 @@ margin:55px;
         align-items: center;
         justify-content: space-between;
         gap:21px;    
-        margin-top:-155px:
       
     }   
 }

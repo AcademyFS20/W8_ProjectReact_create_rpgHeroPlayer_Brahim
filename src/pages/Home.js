@@ -165,15 +165,17 @@ justify-content:center;
     }
 }
 
-.caro{
-min-height:466px;
-max-height:612px;
-text-align:center;
-margin:55px;
-display:grid;
+.caro {
+    min-height:466px;
+    max-height:612px;
+    text-align:center;
+    margin:55px;
+    display:grid;
 }
+
+
 h2{
-margin:55px;
+    margin:55px;
 }
 
 

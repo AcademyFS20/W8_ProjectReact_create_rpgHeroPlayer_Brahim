@@ -29,8 +29,7 @@ function Carousel() {
           heroes.map((item) => {
 
             const { id, img, characterName, playerDescription } = item;
-            console.log(img);
-            console.log(characterName);
+           
             return (
               <>
 

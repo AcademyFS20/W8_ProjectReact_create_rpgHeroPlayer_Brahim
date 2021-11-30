@@ -4,13 +4,19 @@ import styled from 'styled-components';
 import { Icon } from "../components/icons/arms";
 import PlayerCard from '../components/PlayerCard';
 import { GiHealthPotion, GiCrenulatedShield, GiSwordsPower } from "react-icons/gi"
-import { BsPatchMinus, BsPatchPlus } from "react-icons/bs"
+import { BsPatchMinus, BsPatchPlus, BsArrowBarLeft, BsArrowBarRight } from "react-icons/bs"
 import { useState, useEffect } from 'react';
 import { heroes } from '../utils/constants';
 
 
 function Person() {
     const image = banner
+    const { id, img, characterName, playerDescription } = heroes;
+
+    /** setting state for characters */
+    let position = 0;
+    const [character, setCharacter] = useState(heroes[position])
+
 
     /** setting state for weapon */
     const [weapon, setWeapon] = useState("");
@@ -88,47 +94,47 @@ function Person() {
 
     const selectBatteredAxe = () => {
 
-            setBatteredAxeStyle("batteredAxeSlected");
-            setClaymoreStyle("claymore");
-            setEnglishLongBowStyle("englishLongBow");
-            setFlailStyle("flail");
-            setWeapon("BatteredAxe");
-        
+        setBatteredAxeStyle("batteredAxeSlected");
+        setClaymoreStyle("claymore");
+        setEnglishLongBowStyle("englishLongBow");
+        setFlailStyle("flail");
+        setWeapon("BatteredAxe");
+
         console.log(weapon);
     }
 
     const selectClaymore = () => {
 
-        
-            setClaymoreStyle("claymoreSlected");
-            setBatteredAxeStyle("batteredAxe");
-            setEnglishLongBowStyle("englishLongBow");
-            setFlailStyle("flail");
-            setWeapon("Claymore");
-        
+
+        setClaymoreStyle("claymoreSlected");
+        setBatteredAxeStyle("batteredAxe");
+        setEnglishLongBowStyle("englishLongBow");
+        setFlailStyle("flail");
+        setWeapon("Claymore");
+
         console.log(weapon);
     }
 
     const selectEnglishLongBow = () => {
 
-            setEnglishLongBowStyle("englishLongBowSlected");
-            setBatteredAxeStyle("batteredAxe");
-            setClaymoreStyle("claymore");
-            setFlailStyle("flail");
-            setWeapon("EnglishLongBow");
-        
+        setEnglishLongBowStyle("englishLongBowSlected");
+        setBatteredAxeStyle("batteredAxe");
+        setClaymoreStyle("claymore");
+        setFlailStyle("flail");
+        setWeapon("EnglishLongBow");
+
         console.log(weapon)
 
     }
 
     const selectFlail = () => {
 
-            setFlailStyle("flailSlected");
-            setBatteredAxeStyle("batteredAxe");
-            setClaymoreStyle("claymore");
-            setEnglishLongBowStyle("englishLongBow");
-            setWeapon("Flail");
-          
+        setFlailStyle("flailSlected");
+        setBatteredAxeStyle("batteredAxe");
+        setClaymoreStyle("claymore");
+        setEnglishLongBowStyle("englishLongBow");
+        setWeapon("Flail");
+
         console.log(weapon);
 
     }
@@ -155,6 +161,41 @@ function Person() {
 
 
     }, [weapon])
+
+
+    /** onClick fucntions for charcters */
+
+
+    const moveLeft = () => {
+
+
+
+        position--;
+        if (position < 0) {
+            console.log(heroes.length-1)
+            position = heroes.length-1;
+        }
+        console.log(position);
+
+        setCharacter(heroes[position]);
+    }
+
+
+    const moveRight = () => {
+
+
+        position++;
+
+        if (position > heroes.length-1) {
+            position = 0;
+        } 
+        console.log(position);
+
+        setCharacter(heroes[position]);
+
+        console.log(position);
+
+    }
 
     return (
         <Wrapper>
@@ -210,23 +251,9 @@ function Person() {
                 <div className="pickPlayer">
                     <h3>Pick your player</h3>
                     <div className="players">
-                        {
-                            heroes.map((item) => {
-
-                                const { id, img, characterName, playerDescription } = item;
-                                return (
-                                    <>
-                                        <button className="player">
-                                            <PlayerCard img={img} name={characterName} playerDescription={playerDescription} />
-                                        </button>
-                                    </>
-
-                                )
-
-                            })
-
-                        }
-
+                        <button className="btnPlayer" onClick={moveLeft}><BsArrowBarLeft size={50} /></button>
+                        <PlayerCard img={character.img} playerDescription={character.playerDescription} />
+                        <button className="btnPlayer" onClick={moveRight}><BsArrowBarRight size={50} /></button>
                     </div>
                 </div>
                 <div className="btns">
@@ -422,15 +449,15 @@ const Wrapper = styled.main`
             display:flex;
             flex-direction: row;
             justify-content: space-evenly;
+            align-items:center;
+            gap:34px;
 
-
-
-            .player{
+            .btnPlayer{
                 background-color: transparent;   
-                border 1px dotted var(--color-primary);    
-                
-            }       
-         }
+                border 1px dotted var(--color-primary); 
+            }
+        }       
+         
     }
 } 
 
@@ -455,15 +482,11 @@ const Wrapper = styled.main`
     }
 }
 
-input{
-    width:55px;
-}
+
 button{
     cursor: pointer;
 }
-button:hover{
-    transform: scale(1.1);
-}
+
 
 .plus{
     color: green;

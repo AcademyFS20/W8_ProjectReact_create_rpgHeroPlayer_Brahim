@@ -5,22 +5,26 @@ import { Icon } from "../components/icons/arms";
 import PlayerCard from '../components/PlayerCard';
 import { GiHealthPotion, GiCrenulatedShield, GiSwordsPower } from "react-icons/gi"
 import { BsPatchMinus, BsPatchPlus, BsArrowBarLeft, BsArrowBarRight } from "react-icons/bs"
-import { useState, useEffect,useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { heroes } from '../utils/constants';
 import axios from 'axios';
 import Hero from '../components/Hero';
-import avatar1 from "../assets/pictures/characters_armed/avatar1.png"
-import avatar2 from "../assets/pictures/characters_armed/avatar2.png"
-import avatar3 from "../assets/pictures/characters_armed/avatar3.png"
-import avatar4 from "../assets/pictures/characters_armed/avatar4.png"
-import avatar5 from "../assets/pictures/characters_armed/avatar5.png"
-import avatar6 from "../assets/pictures/characters_armed/avatar6.png"
-import avatar7 from "../assets/pictures/characters_armed/avatar7.png"
-import avatar8 from "../assets/pictures/characters_armed/avatar8.png"
-import avatar9 from "../assets/pictures/characters_armed/avatar9.png"
-import avatar10 from "../assets/pictures/characters_armed/avatar10.png"
-import avatar11 from "../assets/pictures/characters_armed/avatar11.png"
-import avatar12 from "../assets/pictures/characters_armed/avatar12.png"
+
+
+import {
+    avatar1,
+    avatar2,
+    avatar3,
+    avatar4,
+    avatar5,
+    avatar6,
+    avatar7,
+    avatar8,
+    avatar9,
+    avatar10,
+    avatar11,
+    avatar12
+} from "../assets/pictures/characters_armed"
 
 
 
@@ -44,19 +48,14 @@ function Person() {
     const img11 = avatar11
     const img12 = avatar12
 
-    console.log(img8)
-
-
     /** setting states to handle sending data to firebase */
     const [loading, setLoading] = useState(false);
     const [succesMessage, setSuccesMessage] = useState('')
-
 
     const para = useRef(null);
     /** setting state for characters */
     let position = 0;
     const [character, setCharacter] = useState(heroes[position])
-
 
     /** setting state for weapon */
     const [weapon, setWeapon] = useState("");
@@ -72,8 +71,6 @@ function Person() {
     const [claymoreStyle, setClaymoreStyle] = useState("claymore")
     const [englishLongBowStyle, setEnglishLongBowStyle] = useState("englishLongBow")
     const [flailStyle, setFlailStyle] = useState("flail")
-
-    
 
     /** onClick functions to set the value of the skills  */
     const addDefense = () => {
@@ -128,7 +125,6 @@ function Person() {
             }
         }
     }
-
 
     /** onclick functon for slecting a weapon */
     const selectBatteredAxe = () => {
@@ -202,7 +198,6 @@ function Person() {
 
     }, [weapon])
 
-
     /** onClick fucntions for charcters */
     const moveLeft = () => {
         position--;
@@ -224,7 +219,6 @@ function Person() {
 
     }
 
-
     /** Create  */
     const create = () => {
 
@@ -232,7 +226,7 @@ function Person() {
         /** creating armed characters based on their names  and the weapon selected */
 
         let imagePrint = "";
- 
+
         //debouvoire
         if (character.characterName === "de Beauvoir" && weapon === "BatteredAxe") {
             imagePrint = img7
@@ -249,13 +243,13 @@ function Person() {
 
         // sartre
         if (character.characterName === "Sartre" && weapon === "BatteredAxe") {
-          
+
 
             imagePrint = img3;
-               
+
         }
         else if (character.characterName === "Sartre" && weapon === "Claymore") {
-            imagePrint =img2
+            imagePrint = img2
         }
         else if (character.characterName === "Sartre" && weapon === "EnglishLongBow") {
             imagePrint = img1
@@ -278,25 +272,21 @@ function Person() {
             imagePrint = img11
         }
 
-
-
-
         const hero = { characterName: character.characterName, img: character.img, weapon: weapon, defense: defense, attack: attack, healing: healing, armedImg: imagePrint }
         setLoading(true);
         axios.post('https://adventum-76250-default-rtdb.firebaseio.com/persons.json', hero)
             .then(response => {
 
-                if(response.status!==200)
-                {
+                if (response.status !== 200) {
                     setLoading(true)
                     setSuccesMessage('start over');
                 }
 
                 setLoading(false)
                 setSuccesMessage('person Created');
-              
-                
-          
+
+
+
 
             })
             .catch((error) => { console.log(error) })
@@ -309,7 +299,6 @@ function Person() {
 
     }
 
-    
     /** reset */
 
     const reset = () => {
@@ -389,7 +378,7 @@ function Person() {
                     {
                         succesMessage && <div className="alertMessage"> <h4 style={{ color: "green" }}> Your character have been Created</h4>
                             <p> {succesMessage}</p>
-                        </div> }
+                        </div>}
                     <div className="players">
                         <button className="btnPlayer" onClick={moveLeft}><BsArrowBarLeft size={50} /></button>
                         <PlayerCard name={character.characterName} img={character.img} playerDescription={character.playerDescription} />

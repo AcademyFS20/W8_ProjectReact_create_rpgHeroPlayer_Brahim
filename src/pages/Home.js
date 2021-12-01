@@ -3,8 +3,9 @@ import styled from "styled-components";
 import heropic1 from "../assets/pictures/heropic1.jpg";
 import ArmsCard from "../components/ArmsCard";
 import Carousel from "../components/Carousel";
-import { FaEnvelope } from "react-icons/fa";
+import { Icon } from "../components/icons/reactIcons";
 import { Link } from "react-router-dom";
+
 
 function Home() {
     const image = heropic1;
@@ -84,7 +85,7 @@ function Home() {
                 <form action="" class="newsletter">
                     <h2>Connect with us for gaming updates</h2>
                     <div class="newsletter-box">
-                        <FaEnvelope size={40} />
+                        <Icon name="Envelope"  />
                         <input
                             class="emailbox"
                             type="email"

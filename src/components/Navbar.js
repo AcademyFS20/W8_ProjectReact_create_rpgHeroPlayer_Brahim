@@ -2,11 +2,10 @@ import React from 'react'
 import styled from 'styled-components';
 import { navLinks } from '../utils/constants';
 import { Link } from 'react-router-dom';
-import { faBars } from "@fortawesome/free-solid-svg-icons";
-import Awesome from './icons/Awesome';
 import { useAppContext } from '../context/app_context';
 import navbar_bg from "../assets/pictures/navbar_bg-01.svg"
 import logo from "../assets/logo/logo.svg"
+import { Icon } from './icons/reactIcons';
 
 
 
@@ -19,9 +18,9 @@ const Navbar = () => {
     return (
         <Wrapper style={{backgroundImage:`url(${image})`,
         }}>
-            <button type="button" className="btnMenu">
-                <Awesome name={faBars} />
-            </button>
+            {/* <button type="button" className="btnMenu">
+                <Icon name="HamburgerMenu" />
+            </button> */}
             <div className="logo">
                 <img src={adventum} alt="logo" />
         

@@ -2,12 +2,8 @@ import React from 'react'
 import { navLinks } from '../utils/constants';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import Awesome from './icons/Awesome';
-import { faAddressBook } from '@fortawesome/free-solid-svg-icons';
-import { faPhone } from '@fortawesome/free-solid-svg-icons';
-import { faInbox } from '@fortawesome/free-solid-svg-icons';
 import SocialIcons from "./icons/SocialIcons" 
-import { FaFacebook } from 'react-icons/fa';
+import { Icon } from './icons/reactIcons';
 
 
 
@@ -23,15 +19,15 @@ const Footer = () => {
                 </div>
                 <div className ="contacts">
                     <div className="contactInfos">
-                        <Awesome name={faAddressBook} />
+                        <Icon name="AddressBook" />
                         <p>address: 45, Rue Almorabtine, Av. Allal ben Abdellah</p>
                     </div>
                     <div className="contactInfos">
-                        <Awesome name={faPhone} />
+                        <Icon name="Phone"/>
                         <p>phone: 0537152369</p>
                     </div>
                     <div className="contactInfos">
-                        <Awesome name={faInbox} />
+                        <Icon name="Inbox" />
                         <p>email: contact@rpggame.com</p>
                     </div>
                 </div>

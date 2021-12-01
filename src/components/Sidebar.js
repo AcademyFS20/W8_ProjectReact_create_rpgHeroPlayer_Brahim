@@ -1,9 +1,9 @@
 import React from 'react'
 import { faMinus } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
-import Awesome from './icons/Awesome';
 import { navLinks } from '../utils/constants';
 import { Link } from 'react-router-dom';
+import { Icon } from './icons/reactIcons';
 // import { useAppContext } from '../context/app_context';
 
 
@@ -16,7 +16,7 @@ const Sidebar = () => {
         <Wrapper>
             {/* <aside className={`${IsSidepbarOpen ? `sidebar show-sidebar` : `sidebar`}`}> */}
             <button type="button" className="btnMenu">
-                <Awesome name={faMinus} />
+                <Icon name="menuMinus" />
             </button>
             <div className="sideBar">
                 <ul className="links">
@@ -27,6 +27,7 @@ const Sidebar = () => {
                         })
                     }
                 </ul>
+
             </div>
             {/* </aside> */}
 

@@ -3,13 +3,12 @@ import banner from "../assets/pictures/banner.png";
 import styled from 'styled-components';
 import { Icon } from "../components/icons/reactIcons";
 import PlayerCard from '../components/PlayerCard';
-import { GiHealthPotion, GiCrenulatedShield, GiSwordsPower } from "react-icons/gi"
-import { BsArrowBarLeft, BsArrowBarRight } from "react-icons/bs"
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { heroes } from '../utils/constants';
 import axios from 'axios';
 import Hero from '../components/Hero';
 import { avatar1, avatar2, avatar3, avatar4, avatar5, avatar6, avatar7, avatar8, avatar9, avatar10, avatar11, avatar12 } from "../assets/pictures/characters_armed"
+
 
 
 
@@ -29,14 +28,18 @@ function Person() {
     const img11 = avatar11
     const img12 = avatar12
 
+    console.log(img8)
+
+
     /** setting states to handle sending data to firebase */
     const [loading, setLoading] = useState(false);
     const [succesMessage, setSuccesMessage] = useState('')
 
-    const para = useRef(null);
+
     /** setting state for characters */
     let position = 0;
     const [character, setCharacter] = useState(heroes[position])
+
 
     /** setting state for weapon */
     const [weapon, setWeapon] = useState("");
@@ -52,6 +55,8 @@ function Person() {
     const [claymoreStyle, setClaymoreStyle] = useState("claymore")
     const [englishLongBowStyle, setEnglishLongBowStyle] = useState("englishLongBow")
     const [flailStyle, setFlailStyle] = useState("flail")
+
+    
 
     /** onClick functions to set the value of the skills  */
     const addDefense = () => {
@@ -106,6 +111,7 @@ function Person() {
             }
         }
     }
+
 
     /** onclick functon for slecting a weapon */
     const selectBatteredAxe = () => {
@@ -179,6 +185,7 @@ function Person() {
 
     }, [weapon])
 
+
     /** onClick fucntions for charcters */
     const moveLeft = () => {
         position--;
@@ -200,13 +207,14 @@ function Person() {
 
     }
 
+
     /** Create  */
     const create = () => {
 
         /** creating armed characters based on their names  and the weapon selected */
 
         let imagePrint = "";
-
+ 
         //debouvoire
         if (character.characterName === "de Beauvoir" && weapon === "BatteredAxe") {
             imagePrint = img7
@@ -224,9 +232,10 @@ function Person() {
         // sartre
         if (character.characterName === "Sartre" && weapon === "BatteredAxe") {
             imagePrint = img3;
+
         }
         else if (character.characterName === "Sartre" && weapon === "Claymore") {
-            imagePrint = img2
+            imagePrint =img2
         }
         else if (character.characterName === "Sartre" && weapon === "EnglishLongBow") {
             imagePrint = img1
@@ -249,21 +258,28 @@ function Person() {
             imagePrint = img11
         }
 
+
+
+
         const hero = { characterName: character.characterName, img: character.img, weapon: weapon, defense: defense, attack: attack, healing: healing, armedImg: imagePrint }
         setLoading(true);
         axios.post('https://adventum-76250-default-rtdb.firebaseio.com/persons.json', hero)
             .then(response => {
                 if (response.status !== 200) {
+
+
                     setLoading(true)
                     setSuccesMessage('start over');
                 }
                 setLoading(false)
                 setSuccesMessage('refresh the page to see the new character that have been created & click reset to create to start over');
+
             })
             .catch((error) => { console.log(error) })
         reset()
     }
 
+    
     /** reset */
 
     const reset = () => {
@@ -302,7 +318,7 @@ function Person() {
                         <div className="skillsInputs">
                             <h4>Points left -- {points} -- </h4>
                             <div className="skillInput">
-                                <GiCrenulatedShield className="skillIcon" />
+                                <Icon name="DefenseSkillIcon"/>
                                 <p>Defense &nbsp; <strong> -- {defense} --</strong> </p>
                                 <div className="buttons">
                                     <button className="plus" onClick={addDefense}><Icon name="BsPatchPlus"/></button>
@@ -310,7 +326,7 @@ function Person() {
                                 </div>
                             </div>
                             <div className="skillInput">
-                                <GiSwordsPower className="skillIcon" />
+                                <Icon name="AttackSkillIcon" />
                                 <p>Attack &nbsp; <strong> -- {attack} --</strong> </p>
                                 <div className="buttons">
                                     <button className="plus" onClick={addAttack} ><Icon name="BsPatchPlus"/></button>
@@ -318,7 +334,7 @@ function Person() {
                                 </div>
                             </div>
                             <div className="skillInput">
-                                <GiHealthPotion className="skillIcon" />
+                                <Icon name="HealthPotion" />
                                 <p>Healing &nbsp; <strong> -- {healing} --</strong> </p>
                                 <div className="buttons">
                                     <button className="plus" onClick={addHealing}><Icon name="BsPatchPlus"/></button>
@@ -342,12 +358,12 @@ function Person() {
                     <h3> Pick your player</h3>
                     {
                         succesMessage && <div className="alertMessage"> <h4 style={{ color: "green" }}> Your character have been Created</h4>
-                            <p> {succesMessage}</p>
-                        </div>}
+                            <p> {succesMessage} </p>
+                        </div> }
                     <div className="players">
-                        <button className="btnPlayer" onClick={moveLeft}><BsArrowBarLeft size={50} /></button>
+                        <button className="btnPlayer" onClick={moveLeft}><Icon name="ArrowBarLeft"/></button>
                         <PlayerCard name={character.characterName} img={character.img} playerDescription={character.playerDescription} />
-                        <button className="btnPlayer" onClick={moveRight}><BsArrowBarRight size={50} /></button>
+                        <button className="btnPlayer" onClick={moveRight}><Icon name="ArrowBarRight"/></button>
                     </div>
                     <div className="btns">
                         <button className="btn create" onClick={create}>Create</button>
@@ -433,13 +449,7 @@ height :auto;
             flex-direction: row;
             align-items:center;
             gap:21px;
-
-
-            .skillIcon{
-                color: var(--color-primary);
-                width:34px;
-                height:34px;
-            }
+         
         }
     }
 

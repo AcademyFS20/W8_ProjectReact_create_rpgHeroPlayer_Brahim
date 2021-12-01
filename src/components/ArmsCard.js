@@ -1,8 +1,6 @@
 import React from "react";
-import BatteredAxe from "./icons/arms/BatteredAxe";
 import styled from "styled-components";
-import { Icon } from "./icons/arms";
-
+import { Icon } from "./icons/reactIcons";
 
 function ArmsCard(props) {
   return (

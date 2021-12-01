@@ -5,14 +5,54 @@ import { Icon } from "../components/icons/arms";
 import PlayerCard from '../components/PlayerCard';
 import { GiHealthPotion, GiCrenulatedShield, GiSwordsPower } from "react-icons/gi"
 import { BsPatchMinus, BsPatchPlus, BsArrowBarLeft, BsArrowBarRight } from "react-icons/bs"
-import { useState, useEffect } from 'react';
+import { useState, useEffect,useRef } from 'react';
 import { heroes } from '../utils/constants';
+import axios from 'axios';
+import Hero from '../components/Hero';
+import avatar1 from "../assets/pictures/characters_armed/avatar1.png"
+import avatar2 from "../assets/pictures/characters_armed/avatar2.png"
+import avatar3 from "../assets/pictures/characters_armed/avatar3.png"
+import avatar4 from "../assets/pictures/characters_armed/avatar4.png"
+import avatar5 from "../assets/pictures/characters_armed/avatar5.png"
+import avatar6 from "../assets/pictures/characters_armed/avatar6.png"
+import avatar7 from "../assets/pictures/characters_armed/avatar7.png"
+import avatar8 from "../assets/pictures/characters_armed/avatar8.png"
+import avatar9 from "../assets/pictures/characters_armed/avatar9.png"
+import avatar10 from "../assets/pictures/characters_armed/avatar10.png"
+import avatar11 from "../assets/pictures/characters_armed/avatar11.png"
+import avatar12 from "../assets/pictures/characters_armed/avatar12.png"
+
+
+
+
+
 
 
 function Person() {
     const image = banner
     const { id, img, characterName, playerDescription } = heroes;
+    const img1 = avatar1
+    const img2 = avatar2
+    const img3 = avatar3
+    const img4 = avatar4
+    const img5 = avatar5
+    const img6 = avatar6
+    const img7 = avatar7
+    const img8 = avatar8
+    const img9 = avatar9
+    const img10 = avatar10
+    const img11 = avatar11
+    const img12 = avatar12
 
+    console.log(img8)
+
+
+    /** setting states to handle sending data to firebase */
+    const [loading, setLoading] = useState(false);
+    const [succesMessage, setSuccesMessage] = useState('')
+
+
+    const para = useRef(null);
     /** setting state for characters */
     let position = 0;
     const [character, setCharacter] = useState(heroes[position])
@@ -33,7 +73,7 @@ function Person() {
     const [englishLongBowStyle, setEnglishLongBowStyle] = useState("englishLongBow")
     const [flailStyle, setFlailStyle] = useState("flail")
 
-
+    
 
     /** onClick functions to set the value of the skills  */
     const addDefense = () => {
@@ -91,7 +131,6 @@ function Person() {
 
 
     /** onclick functon for slecting a weapon */
-
     const selectBatteredAxe = () => {
 
         setBatteredAxeStyle("batteredAxeSlected");
@@ -100,7 +139,7 @@ function Person() {
         setFlailStyle("flail");
         setWeapon("BatteredAxe");
 
-        console.log(weapon);
+        // console.log(weapon);
     }
 
     const selectClaymore = () => {
@@ -112,7 +151,6 @@ function Person() {
         setFlailStyle("flail");
         setWeapon("Claymore");
 
-        console.log(weapon);
     }
 
     const selectEnglishLongBow = () => {
@@ -121,9 +159,11 @@ function Person() {
         setBatteredAxeStyle("batteredAxe");
         setClaymoreStyle("claymore");
         setFlailStyle("flail");
+
+
         setWeapon("EnglishLongBow");
 
-        console.log(weapon)
+        // console.log(weapon)
 
     }
 
@@ -135,7 +175,7 @@ function Person() {
         setEnglishLongBowStyle("englishLongBow");
         setWeapon("Flail");
 
-        console.log(weapon);
+        // console.log(weapon);
 
     }
 
@@ -164,41 +204,130 @@ function Person() {
 
 
     /** onClick fucntions for charcters */
-
-
     const moveLeft = () => {
-
-
-
         position--;
         if (position < 0) {
-            console.log(heroes.length-1)
-            position = heroes.length-1;
+            console.log(heroes.length - 1)
+            position = heroes.length - 1;
         }
-        console.log(position);
-
+        // console.log(position);
         setCharacter(heroes[position]);
     }
 
-
     const moveRight = () => {
-
-
         position++;
-
-        if (position > heroes.length-1) {
+        if (position > heroes.length - 1) {
             position = 0;
-        } 
-        console.log(position);
+        }
+        // console.log(position);
+        setCharacter(heroes[position - 1]);
 
+    }
+
+
+    /** Create  */
+    const create = () => {
+
+
+        /** creating armed characters based on their names  and the weapon selected */
+
+        let imagePrint = "";
+ 
+        //debouvoire
+        if (character.characterName === "de Beauvoir" && weapon === "BatteredAxe") {
+            imagePrint = img7
+        }
+        else if (character.characterName === "de Beauvoir" && weapon === "Claymore") {
+            imagePrint = img8
+        }
+        else if (character.characterName === "de Beauvoir" && weapon === "EnglishLongBow") {
+            imagePrint = img6
+        }
+        else if (character.characterName === "de Beauvoir" && weapon === "Flail") {
+            imagePrint = img5
+        }
+
+        // sartre
+        if (character.characterName === "Sartre" && weapon === "BatteredAxe") {
+          
+
+            imagePrint = img3;
+               
+        }
+        else if (character.characterName === "Sartre" && weapon === "Claymore") {
+            imagePrint =img2
+        }
+        else if (character.characterName === "Sartre" && weapon === "EnglishLongBow") {
+            imagePrint = img1
+        }
+        else if (character.characterName === "Sartre" && weapon === "Flail") {
+            imagePrint = img4
+        }
+
+        //camus
+        else if (character.characterName === "Camus" && weapon === "BatteredAxe") {
+            imagePrint = img10
+        }
+        else if (character.characterName === "Camus" && weapon === "Claymore") {
+            imagePrint = img12
+        }
+        else if (character.characterName === "Camus" && weapon === "EnglishLongBow") {
+            imagePrint = img9
+        }
+        else if (character.characterName === "Camus" && weapon === "Flail") {
+            imagePrint = img11
+        }
+
+
+
+
+        const hero = { characterName: character.characterName, img: character.img, weapon: weapon, defense: defense, attack: attack, healing: healing, armedImg: imagePrint }
+        setLoading(true);
+        axios.post('https://adventum-76250-default-rtdb.firebaseio.com/persons.json', hero)
+            .then(response => {
+
+                if(response.status!==200)
+                {
+                    setLoading(true)
+                    setSuccesMessage('start over');
+                }
+
+                setLoading(false)
+                setSuccesMessage('person Created');
+              
+                
+          
+
+            })
+            .catch((error) => { console.log(error) })
+
+
+
+        reset()
+
+
+
+    }
+
+    
+    /** reset */
+
+    const reset = () => {
+
+        setWeapon("");
+        setDefense(0);
+        setAttack(0);
+        setHealing(0);
+        setPoints(14);
         setCharacter(heroes[position]);
-
-        console.log(position);
+        // setSuccesMessage(false);
 
     }
 
     return (
         <Wrapper>
+
+
             <section className="intro" style={{
                 backgroundImage: `url(${image})`,
                 backgroundSize: `cover`
@@ -208,6 +337,7 @@ function Person() {
                 </div>
 
             </section>
+
             <section className="character">
                 <div className="skillsAndWeapons">
                     <div className="skills">
@@ -220,20 +350,26 @@ function Person() {
                             <div className="skillInput">
                                 <GiCrenulatedShield className="skillIcon" />
                                 <p>Defense &nbsp; <strong> -- {defense} --</strong> </p>
-                                <button className="plus" onClick={addDefense}><BsPatchPlus size={20} /></button>
-                                <button className="minus" onClick={reduceDefense}><BsPatchMinus size={20} /></button>
+                                <div className="buttons">
+                                    <button className="plus" onClick={addDefense}><BsPatchPlus size={20} /></button>
+                                    <button className="minus" onClick={reduceDefense}><BsPatchMinus size={20} /></button>
+                                </div>
                             </div>
                             <div className="skillInput">
                                 <GiSwordsPower className="skillIcon" />
                                 <p>Attack &nbsp; <strong> -- {attack} --</strong> </p>
-                                <button className="plus" onClick={addAttack} ><BsPatchPlus size={20} /></button>
-                                <button className="minus" onClick={reduceAttack}><BsPatchMinus size={20} /></button>
+                                <div className="buttons">
+                                    <button className="plus" onClick={addAttack} ><BsPatchPlus size={20} /></button>
+                                    <button className="minus" onClick={reduceAttack}><BsPatchMinus size={20} /></button>
+                                </div>
                             </div>
                             <div className="skillInput">
                                 <GiHealthPotion className="skillIcon" />
                                 <p>Healing &nbsp; <strong> -- {healing} --</strong> </p>
-                                <button className="plus" onClick={addHealing}><BsPatchPlus size={20} /></button>
-                                <button className="minus" onClick={reduceHealing}><BsPatchMinus size={20} /></button>
+                                <div className="buttons">
+                                    <button className="plus" onClick={addHealing}><BsPatchPlus size={20} /></button>
+                                    <button className="minus" onClick={reduceHealing}><BsPatchMinus size={20} /></button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -249,23 +385,25 @@ function Person() {
                     </div>
                 </div>
                 <div className="pickPlayer">
-                    <h3>Pick your player</h3>
+                    <h3> Pick your player</h3>
+                    {
+                        succesMessage && <div className="alertMessage"> <h4 style={{ color: "green" }}> Your character have been Created</h4>
+                            <p> {succesMessage}</p>
+                        </div> }
                     <div className="players">
                         <button className="btnPlayer" onClick={moveLeft}><BsArrowBarLeft size={50} /></button>
-                        <PlayerCard img={character.img} playerDescription={character.playerDescription} />
+                        <PlayerCard name={character.characterName} img={character.img} playerDescription={character.playerDescription} />
                         <button className="btnPlayer" onClick={moveRight}><BsArrowBarRight size={50} /></button>
                     </div>
-                </div>
-                <div className="btns">
-                    <button className="btn create">Create</button>
-                    <button className="btn reset">Reset</button>
-                </div>
-                {/* <div className="hero">
-                    <h3>Your Hero</h3>
-                    <div className="chosenPlayer">
-                        <PlayerCard />
+                    <div className="btns">
+                        <button className="btn create" onClick={create}>Create</button>
+                        <button className="btn reset" onClick={reset}>Reset</button>
                     </div>
-                </div> */}
+                </div>
+
+                <div className="hero">
+                    <Hero />
+                </div>
             </section>
         </Wrapper >
     )
@@ -273,6 +411,9 @@ function Person() {
 
 
 const Wrapper = styled.main`
+
+
+
 .intro{
     min-height: 377px;
     display:flex;
@@ -299,11 +440,12 @@ const Wrapper = styled.main`
 
 .character{
 
-    min-height: 989px;
+height :auto;
     display:flex;
     flex-direction:column;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items:center;
+    gap:55px;
     
     .skillsAndWeapons{
 
@@ -311,6 +453,8 @@ const Wrapper = styled.main`
         align-items: flex-start;
         flex-direction: row;
         justify-content: space-around;
+        margin-top:34px;
+
 
     }
 
@@ -462,24 +606,9 @@ const Wrapper = styled.main`
 } 
 
 .hero{
-    width:612px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap:34px;
 
-    .chosenPlayer{
-        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-        transition: 0.3s;
-        width:377px;
-        height:233px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap:13px;
-        border 1px dotted var(--color-primary);   
-    }
+   padding :34px;
+
 }
 
 
@@ -491,13 +620,13 @@ button{
 .plus{
     color: green;
     background-color: transparent;   
-    border 1px dotted var(--color-primary);
+    border 0.3px dotted var(--color-primary);
     
 }
 .minus{
     color:red;
     background-color: transparent;   
-    border 1px dotted var(--color-primary);
+    border 0.3px dotted var(--color-primary);
 }
 
 h3{
@@ -506,7 +635,7 @@ font-size:1.6rem;
 .btns{
 
     display:flex;
-    gap:233px;
+    gap:55px;
 
     .btn{
      
@@ -531,6 +660,18 @@ font-size:1.6rem;
         color: rgba(255,0,40,0.9);
         font-weight : bold ;
     }
+}
+
+
+img{
+    width:30%;
+}
+
+.alertMessage{
+
+    display:flex;
+    flex-direction: column;
+    gap:13px;
 }
 `
 export default Person

@@ -11,8 +11,8 @@ function PlayerCard(props) {
             <h4>{props.name}</h4>
             <img src={props.img} alt="player picture" />
             <p>{props.playerDescription}</p>
-      </Wrapper>
-                )
+        </Wrapper>
+    )
 }
 
 
@@ -40,4 +40,4 @@ p{
 
 
 `
-                export default PlayerCard
+export default PlayerCard

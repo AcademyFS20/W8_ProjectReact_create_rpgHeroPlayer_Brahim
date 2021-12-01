@@ -1,34 +1,15 @@
 import React from 'react'
 import banner from "../assets/pictures/banner.png";
 import styled from 'styled-components';
-import { Icon } from "../components/icons/arms";
+import { Icon } from "../components/icons/reactIcons";
 import PlayerCard from '../components/PlayerCard';
 import { GiHealthPotion, GiCrenulatedShield, GiSwordsPower } from "react-icons/gi"
-import { BsPatchMinus, BsPatchPlus, BsArrowBarLeft, BsArrowBarRight } from "react-icons/bs"
+import { BsArrowBarLeft, BsArrowBarRight } from "react-icons/bs"
 import { useState, useEffect, useRef } from 'react';
 import { heroes } from '../utils/constants';
 import axios from 'axios';
 import Hero from '../components/Hero';
-
-
-import {
-    avatar1,
-    avatar2,
-    avatar3,
-    avatar4,
-    avatar5,
-    avatar6,
-    avatar7,
-    avatar8,
-    avatar9,
-    avatar10,
-    avatar11,
-    avatar12
-} from "../assets/pictures/characters_armed"
-
-
-
-
+import { avatar1, avatar2, avatar3, avatar4, avatar5, avatar6, avatar7, avatar8, avatar9, avatar10, avatar11, avatar12 } from "../assets/pictures/characters_armed"
 
 
 
@@ -222,7 +203,6 @@ function Person() {
     /** Create  */
     const create = () => {
 
-
         /** creating armed characters based on their names  and the weapon selected */
 
         let imagePrint = "";
@@ -243,10 +223,7 @@ function Person() {
 
         // sartre
         if (character.characterName === "Sartre" && weapon === "BatteredAxe") {
-
-
             imagePrint = img3;
-
         }
         else if (character.characterName === "Sartre" && weapon === "Claymore") {
             imagePrint = img2
@@ -276,27 +253,15 @@ function Person() {
         setLoading(true);
         axios.post('https://adventum-76250-default-rtdb.firebaseio.com/persons.json', hero)
             .then(response => {
-
                 if (response.status !== 200) {
                     setLoading(true)
                     setSuccesMessage('start over');
                 }
-
                 setLoading(false)
-                setSuccesMessage('person Created');
-
-
-
-
+                setSuccesMessage('refresh the page to see the new character that have been created & click reset to create to start over');
             })
             .catch((error) => { console.log(error) })
-
-
-
         reset()
-
-
-
     }
 
     /** reset */
@@ -309,8 +274,7 @@ function Person() {
         setHealing(0);
         setPoints(14);
         setCharacter(heroes[position]);
-        // setSuccesMessage(false);
-
+        setSuccesMessage("");
     }
 
     return (
@@ -332,6 +296,7 @@ function Person() {
                     <div className="skills">
                         <div>
                             <h3> skills</h3>
+                            
 
                         </div>
                         <div className="skillsInputs">
@@ -340,24 +305,24 @@ function Person() {
                                 <GiCrenulatedShield className="skillIcon" />
                                 <p>Defense &nbsp; <strong> -- {defense} --</strong> </p>
                                 <div className="buttons">
-                                    <button className="plus" onClick={addDefense}><BsPatchPlus size={20} /></button>
-                                    <button className="minus" onClick={reduceDefense}><BsPatchMinus size={20} /></button>
+                                    <button className="plus" onClick={addDefense}><Icon name="BsPatchPlus"/></button>
+                                    <button className="minus" onClick={reduceDefense}><Icon name="BsPatchMinus" /></button>
                                 </div>
                             </div>
                             <div className="skillInput">
                                 <GiSwordsPower className="skillIcon" />
                                 <p>Attack &nbsp; <strong> -- {attack} --</strong> </p>
                                 <div className="buttons">
-                                    <button className="plus" onClick={addAttack} ><BsPatchPlus size={20} /></button>
-                                    <button className="minus" onClick={reduceAttack}><BsPatchMinus size={20} /></button>
+                                    <button className="plus" onClick={addAttack} ><Icon name="BsPatchPlus"/></button>
+                                    <button className="minus" onClick={reduceAttack}><Icon name="BsPatchMinus" /></button>
                                 </div>
                             </div>
                             <div className="skillInput">
                                 <GiHealthPotion className="skillIcon" />
                                 <p>Healing &nbsp; <strong> -- {healing} --</strong> </p>
                                 <div className="buttons">
-                                    <button className="plus" onClick={addHealing}><BsPatchPlus size={20} /></button>
-                                    <button className="minus" onClick={reduceHealing}><BsPatchMinus size={20} /></button>
+                                    <button className="plus" onClick={addHealing}><Icon name="BsPatchPlus"/></button>
+                                    <button className="minus" onClick={reduceHealing}><Icon name="BsPatchMinus"/></button>
                                 </div>
                             </div>
                         </div>

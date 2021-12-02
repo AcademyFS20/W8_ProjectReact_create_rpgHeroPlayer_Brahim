@@ -1,5 +1,4 @@
 import React from 'react'
-import { faMinus } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
 import { navLinks } from '../utils/constants';
 import { Link } from 'react-router-dom';

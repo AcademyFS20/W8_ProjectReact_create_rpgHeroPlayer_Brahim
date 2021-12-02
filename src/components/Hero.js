@@ -49,14 +49,14 @@ function Hero() {
             toast.success("Your characters have been deleted!", { position: toast.POSITION.TOP_CENTER, theme: "colored" });
             setTimeout(() => { window.location.reload() }, 5000)
         } else {
-            toast.info("Nothing commited", { position: toast.POSITION.TOP_CENTER, theme: "colored" });
+            toast.info("nothing have been deleted continue enjoying the platform!", { position: toast.POSITION.TOP_CENTER, theme: "colored" });
         }
     }
 
     const deleteOne = (id) => {
         console.log(id);
         setLoading(true);
-        if (window.confirm("are you sure you want to delete all the characters")) {
+        if (window.confirm("are you sure you want to delete this character")) {
             axios.delete(`https://adventum-76250-default-rtdb.firebaseio.com/persons/${id}.json` )
                 .then(response => {
 
@@ -65,7 +65,7 @@ function Hero() {
             toast.success("Your characters have been deleted!", { position: toast.POSITION.TOP_CENTER, theme: "colored" });
             setTimeout(() => { window.location.reload() }, 5000)
         } else {
-            toast.info("Nothing commited", { position: toast.POSITION.TOP_CENTER, theme: "colored" });
+            toast.info("nothing have been deleted continue enjoying the platform !", { position: toast.POSITION.TOP_CENTER, theme: "colored" });
         }
 
     }

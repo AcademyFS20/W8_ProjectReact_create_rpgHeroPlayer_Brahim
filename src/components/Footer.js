@@ -12,10 +12,10 @@ const Footer = () => {
     return (
         <Wrapper>
             <div className="infos">
-                <h2>ADVENTUM</h2>
-                <div className="para">
-                <p> Adventum a platform for creating your characters</p>
-                <p>and start your adventure</p>
+                <h2 className="footerTitle">ADVENTUM</h2>
+                <div className="paraFooter">
+                <p> Adventum a platform for creating your characters.</p>
+                <p>And starting your own adventure</p>
                 </div>
                 <div className ="contacts">
                     <div className="contactInfos">
@@ -44,7 +44,7 @@ const Footer = () => {
                 </ul>
             </div>
             <div class="social">
-                <h2>Follow us on social media</h2>
+                <h2 className="footerTitle">Follow us on social media</h2>
                 <SocialIcons />
             </div>
         </Wrapper>
@@ -95,7 +95,7 @@ color:white;
 }
 
 .contactInfos{
-    display:flex
+    display:flex;
    justify-content: space-evenly;
 
 }

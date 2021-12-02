@@ -63,11 +63,11 @@ function FAQ() {
         backgroundSize: `cover`
       }}>
         <div className="faqTitle">
-          <h2>Frequently Asked Questions</h2>
+          <h2 className="pageTitle">Frequently Asked Questions</h2>
         </div>
       </section>
       <section className="faq">
-        <div className="questions">
+        <div className="faqQuestions">
           <Faq
             data={data}
             styles={styles}
@@ -89,7 +89,7 @@ const Wrapper = styled.main`
   align-items:center;
   }
 
-  h2{
+  .pageTitle{
     font-size:3.4rem;
     color:white;
     background-color:rgba(0, 0, 50, 0.3);
@@ -101,8 +101,8 @@ const Wrapper = styled.main`
   align-itemq:center;
 }
 
-.questions{
-  width:989px;
+.faqQuestions{
+  width:80%;
   display: flex;
   align-items: center;
   justify-content: space-around;

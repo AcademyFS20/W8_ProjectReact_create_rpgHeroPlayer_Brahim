@@ -13,7 +13,7 @@ function About() {
                 }}
             >
                 <div className="title">
-                    <h2>About us</h2>
+                    <h2 className="pageTitle">About us</h2>
                 </div>
             </section>
 
@@ -22,7 +22,7 @@ function About() {
                     Adventum is the best gaming studio for all gamer.
                     Contrary to popular belief, Lorem Ipsum is not simply random text.
                 </h3>
-                <div className="para">
+                <div className="paraAboutUs">
                     <p>
                         Adventum is the premiere source and community for both niche and
                         unique games across the globe. We provide fun daily content, memes,
@@ -109,18 +109,17 @@ const Wrapper = styled.main`
 }
  .aboutText{
      min-height:612px;
-     width:989px;
+     width:80%;
      display: flex;
      flex-direction: column;
      justify-content: center; 
      align-items: center;; 
      gap:89px;
-     margin: 0 0 0 144px;
+     margin: 0 0 0 55px;
 
 
-     .para{
+     .paraAboutUs{
          display:flex;
-         flex-direction:colmun;
          justify-content: center; 
          align-items: center; 
         gap: 89px;
@@ -128,7 +127,7 @@ const Wrapper = styled.main`
      }     
  }
 
-h2 {
+ .pageTitle {
     
     font-size:3.4rem;
     color:white;
@@ -158,9 +157,9 @@ img{
     justify-content: flex-start;
     align-items:flex-start;
     min-height:756px;
-    width:989px;
-    margin: 0 0 0 144px;
-    gap:89px;
+    width:80%;
+    margin: 0 0 0 55px;
+    gap:55px;
 }
 
 
@@ -169,14 +168,14 @@ img{
     justify-content: center; 
     align-items: center; 
    gap: 89px;
-   width:989px;
+   width:89%;
 
 
    } 
 
 
    .teamMember{
-       width:233px;
+       width:80%;
        display:flex;
        flex-direction:column;
       justify-content: center; 
@@ -185,7 +184,6 @@ img{
         
    }
 }
-
 
 `;
 export default About;

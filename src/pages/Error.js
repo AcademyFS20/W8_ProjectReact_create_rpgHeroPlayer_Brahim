@@ -17,11 +17,9 @@ function Error() {
                     backgroundImage: `url(${image})`,
                     backgroundSize: `cover`,
                 }}>
-                <div className="title">
-                    <h2>OPPS...</h2>
-                    <h2>
-                        SORRY, this page is not found.
-                    </h2>
+                <div className="errorContent">
+                    <h2 className="errorMessage">OPPS...</h2>
+                    <h2 className="errorMessage">SORRY, this page is not found.</h2>
                 </div>
                 <div>
                     <Link to="/">
@@ -50,7 +48,7 @@ align-items:center;
 gap:55px;
 }
 
-h2 {
+.errorMessage {
     font-size:5rem;
     color:white;
     background-color:rgba(0, 0, 50, 0.3);

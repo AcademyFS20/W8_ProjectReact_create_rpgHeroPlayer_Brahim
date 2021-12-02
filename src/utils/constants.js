@@ -37,7 +37,7 @@ export const heroes = [
         id: 1,
         img: player1,
         characterName: "de Beauvoir",
-        playerDescription: "fearless heroine with great strength and agility"
+        playerDescription: "fearless heroine with strength and agility"
     },
 
     {
@@ -50,6 +50,6 @@ export const heroes = [
         id: 3,
         img: player3,
         characterName: "Camus",
-        playerDescription: "A revolutionary hero that always charge forward"
+        playerDescription: "A revolutionary that always charge forward"
     }
 ]

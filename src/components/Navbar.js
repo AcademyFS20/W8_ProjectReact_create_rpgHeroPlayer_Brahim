@@ -18,9 +18,9 @@ const Navbar = () => {
     return (
         <Wrapper style={{backgroundImage:`url(${image})`,
         }}>
-            {/* <button type="button" className="btnMenu">
+            <button type="button" className="btnMenu">
                 <Icon name="HamburgerMenu" />
-            </button> */}
+            </button>
             <div className="logo">
                 <img src={adventum} alt="logo" />
         
@@ -47,20 +47,17 @@ const Wrapper = styled.header`
 
 display:flex;
 flex-direction:row;
-justify-content:space-center;
+justify-content: space-around;
 align-items:center;
-gap:612px;
 height:55px;
 
 .logo{
-    width:8%;
-    margin-left:21px
+    width:144px;
 }
 
 
 .links{
     display:flex;
-    flex-direction:row;
     justify-content:space-between;
     align-items:center;  
     width:144%;
@@ -79,6 +76,7 @@ height:55px;
     right: 21px;
     background-color:transparent;
     border: none;
+    visibility:hidden;
 }   
 `
 

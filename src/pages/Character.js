@@ -301,8 +301,8 @@ function Person() {
                 backgroundImage: `url(${image})`,
                 backgroundSize: `cover`
             }}>
-                <div className="title">
-                    <h2>Create your Character</h2>
+                <div className="characterTitle">
+                    <h2 className="pageTitle">Create your Character</h2>
                 </div>
 
             </section>
@@ -392,10 +392,10 @@ const Wrapper = styled.main`
     align-items:center;
     }
 
-    .title{
+    .characterTitle{
         color:white;
     }
-    h2{
+    .pageTitle{
     
      
         font-size:3.4rem;
@@ -420,8 +420,6 @@ height :auto;
     .skillsAndWeapons{
 
         display:flex;
-        align-items: flex-start;
-        flex-direction: row;
         justify-content: space-around;
         margin-top:34px;
 
@@ -599,7 +597,7 @@ font-size:1.6rem;
 .btns{
 
     display:flex;
-    gap:55px;
+    gap:21px;
 
     .btn{
      

@@ -83,7 +83,7 @@ function Home() {
             </section>
             <section className="emailForm">
                 <form action="" class="newsletter">
-                    <h2>Connect with us for gaming updates</h2>
+                    <h2 className="newsletterMsg">Connect with us for gaming updates</h2>
                     <div class="newsletter-box">
                         <Icon name="Envelope"  />
                         <input
@@ -191,16 +191,13 @@ h2{
 
     .armsText{
         display: flex;
-        flex-direction: row;
         align-items: center;
-        justify-content: center; 
-        gap:89px; 
-        width:1146px;
+        justify-content: space-evenly; 
+        width:100%;
         
     }
     .armsCards{
         display: flex;
-        flex-direction: row;
         align-items: center;
         justify-content: space-between;
         gap:21px;    
@@ -218,8 +215,7 @@ h2{
 
 .newsletter {
     background-color: #fff;
-    width: 1222px;
-    height:277px;
+    width: 90%;
     padding: 50px 30px;
     box-sizing: border-box;
     display: table;
@@ -246,7 +242,7 @@ h2{
     float: right;
 }
 .newsletter input[type="email"] {
-    width: 612px;
+    width: 80%;
     height: 38px;
     padding: 5px 10px;
     box-sizing: border-box;

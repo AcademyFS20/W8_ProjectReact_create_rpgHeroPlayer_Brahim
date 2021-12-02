@@ -44,7 +44,7 @@ function Hero() {
             .catch((error) => { console.log(error) })
 
         toast.success("Your characters have been deleted!", { position: toast.POSITION.TOP_CENTER, theme: "colored" });
-
+        setTimeout(()=>{window.location.reload()}, 5000)  
 
     }
 

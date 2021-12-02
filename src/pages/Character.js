@@ -275,10 +275,14 @@ function Person() {
                 }
                 setLoading(false)
                 setSuccesMessage(true)
-                toast.success("Your character have been created!",{position: toast.POSITION.TOP_CENTER,  theme: "colored"});
             })
             .catch((error) => { console.log(error) })
-        reset()
+
+        
+        toast.success("Your character have been created!", { position: toast.POSITION.TOP_CENTER, theme: "colored" });
+
+        setTimeout(() => { window.location.reload() }, 5000)
+
     }
 
 

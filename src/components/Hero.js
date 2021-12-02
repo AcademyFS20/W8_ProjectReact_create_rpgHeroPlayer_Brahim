@@ -3,38 +3,53 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import PlayerCard from './PlayerCard';
-import { GiConsoleController } from 'react-icons/gi';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
 function Hero() {
 
 
-
+    const [loading, setLoading] = useState(false);
     const [dataRecieved, setdataRecieved] = useState([])
 
     useEffect(() => {
 
+
+        setLoading(true);
         axios.get('https://adventum-76250-default-rtdb.firebaseio.com/persons.json')
             .then(response => {
+
+                console.log(response.data)
                 var mainData = Object.values(response.data);
                 // console.log(mainData)
                 setdataRecieved(mainData)
+                setLoading(false);
             })
             .catch((error) => { console.log(error) })
     }, [])
 
     const deleteData = () => {
 
-
+        setLoading(true);
         axios.delete('https://adventum-76250-default-rtdb.firebaseio.com/persons.json/', dataRecieved)
             .then(response => {
 
                 var editedData = Object.values(response.data)
                 setdataRecieved(editedData)
+                setLoading(false);
+
             })
             .catch((error) => { console.log(error) })
+
+        toast.success("Your characters have been deleted!", { position: toast.POSITION.TOP_CENTER, theme: "colored" });
+
+
     }
+
+
+
 
     return (
         <Wrapper>
@@ -51,12 +66,16 @@ function Hero() {
                                         Defense <span class="font-style">{item.defense}</span>,
                                         Attack <span class="font-style">{item.healing}</span>  </p>
                                 </div>
+
                             </div>
                         )
                     })
                 }
             </div>
+            {loading && <ToastContainer />}
             <button type="button" className="deleteAll" onClick={deleteData}>Delete All</button>
+
+
 
 
         </Wrapper>
@@ -102,16 +121,21 @@ gap: 34px 21px;
 }
 
 .deleteAll{
-
-height:89px;
-width:233px;
-background-color:var(--color-primary);
-border 0.3px dotted var(--color-primary);
-
+    height:34px;
+    width:100%;
+    background-color:var(--color-primary);
+    border: 1px dotted var(--color-primary); 
+    color: white;
 }
 
 img{
     width:30%
+}
+
+.deleteAll:hover{
+   color:var(--color-primary);
+   background-color: white;
+
 }
 `
 export default Hero

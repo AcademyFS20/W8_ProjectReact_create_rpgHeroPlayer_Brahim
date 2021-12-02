@@ -6,45 +6,67 @@ import PlayerCard from './PlayerCard';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
-
 function Hero() {
-
-
     const [loading, setLoading] = useState(false);
     const [dataRecieved, setdataRecieved] = useState([])
 
     useEffect(() => {
-
-
         setLoading(true);
         axios.get('https://adventum-76250-default-rtdb.firebaseio.com/persons.json')
             .then(response => {
+                // console.log(response.data)
+                const fetchedResults = [];
 
-                console.log(response.data)
-                var mainData = Object.values(response.data);
+                for (let key in response.data) {
+                    fetchedResults.push({
+                        ...response.data[key],
+                        id: key,
+                    });
+                }
+                // var mainData = Object.values(response.data);
                 // console.log(mainData)
-                setdataRecieved(mainData)
+                // setdataRecieved(mainData)
+                console.log(fetchedResults)
+                setdataRecieved(fetchedResults)
+
                 setLoading(false);
             })
             .catch((error) => { console.log(error) })
     }, [])
-
     const deleteData = () => {
 
         setLoading(true);
-        axios.delete('https://adventum-76250-default-rtdb.firebaseio.com/persons.json/', dataRecieved)
-            .then(response => {
+        if (window.confirm("are you sure you want to delete all the characters")) {
+            axios.delete('https://adventum-76250-default-rtdb.firebaseio.com/persons.json/', dataRecieved)
+                .then(response => {
 
-                var editedData = Object.values(response.data)
-                setdataRecieved(editedData)
-                setLoading(false);
+                    var dataClear = Object.values(response.data)
+                    setdataRecieved(dataClear)
+                    setLoading(false);
 
-            })
-            .catch((error) => { console.log(error) })
+                })
+                .catch((error) => { console.log(error) })
+            toast.success("Your characters have been deleted!", { position: toast.POSITION.TOP_CENTER, theme: "colored" });
+            setTimeout(() => { window.location.reload() }, 5000)
+        } else {
+            toast.info("Nothing commited", { position: toast.POSITION.TOP_CENTER, theme: "colored" });
+        }
+    }
 
-        toast.success("Your characters have been deleted!", { position: toast.POSITION.TOP_CENTER, theme: "colored" });
-        setTimeout(()=>{window.location.reload()}, 5000)  
+    const deleteOne = (id) => {
+        console.log(id);
+        setLoading(true);
+        if (window.confirm("are you sure you want to delete all the characters")) {
+            axios.delete(`https://adventum-76250-default-rtdb.firebaseio.com/persons/${id}.json` )
+                .then(response => {
+
+                    })
+                .catch((error) => { console.log(error) })
+            toast.success("Your characters have been deleted!", { position: toast.POSITION.TOP_CENTER, theme: "colored" });
+            setTimeout(() => { window.location.reload() }, 5000)
+        } else {
+            toast.info("Nothing commited", { position: toast.POSITION.TOP_CENTER, theme: "colored" });
+        }
 
     }
 
@@ -53,12 +75,13 @@ function Hero() {
 
     return (
         <Wrapper>
+            <h2>- {dataRecieved.length} -  Heroes have been created</h2>
             <div className="charctersCreated">
                 {
                     dataRecieved.map((item) => {
 
                         return (
-                            <div className="heroesCreated">
+                            <div className="heroesCreated" key ={item.id}>
                                 <PlayerCard img={item.armedImg} name={item.characterName} />
                                 <div className="HeroDescription">
                                     <p> Weapon:<span class="font-style">{item.weapon}</span> </p>
@@ -66,7 +89,7 @@ function Hero() {
                                         Defense <span class="font-style">{item.defense}</span>,
                                         Attack <span class="font-style">{item.healing}</span>  </p>
                                 </div>
-
+                                <button type="button" className="deleteAll" onClick={() => deleteOne(item.id)}>Delete hero</button>
                             </div>
                         )
                     })
@@ -89,7 +112,7 @@ const Wrapper = styled.div`
 display:flex;
 flex-direction:column;
 align-items: center;
-gap:89px;
+gap:34px;
 
 .charctersCreated{
 display: grid; 

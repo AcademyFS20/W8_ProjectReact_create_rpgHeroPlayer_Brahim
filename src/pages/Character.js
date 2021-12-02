@@ -191,10 +191,17 @@ function Person() {
     /** onClick fucntions for charcters */
     const moveLeft = () => {
         position--;
+        console.log(position)
+
         if (position < 0) {
-            console.log(heroes.length - 1)
+            console.log(position)
+
             position = heroes.length - 1;
+            console.log(position)
+
         }
+        console.log(position)
+
         // console.log(position);
         setCharacter(heroes[position]);
     }
@@ -202,7 +209,9 @@ function Person() {
     const moveRight = () => {
         position++;
         if (position > heroes.length - 1) {
+
             position = 0;
+            console.log(position)
         }
         // console.log(position);
         setCharacter(heroes[position - 1]);
@@ -278,7 +287,7 @@ function Person() {
             })
             .catch((error) => { console.log(error) })
 
-        
+        reset()
         toast.success("Your character have been created!", { position: toast.POSITION.TOP_CENTER, theme: "colored" });
 
         setTimeout(() => { window.location.reload() }, 5000)

@@ -16,7 +16,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function Person() {
     const image = banner
-    const { id, img, characterName, playerDescription } = heroes;
+    const [character1, character2, character3] = heroes
     const img1 = avatar1
     const img2 = avatar2
     const img3 = avatar3
@@ -39,9 +39,9 @@ function Person() {
 
 
     /** setting state for characters */
-    let position = 0;
-    const [character, setCharacter] = useState(heroes[position])
-
+    // let position = 0;
+    const [character, setCharacter] = useState(character1)
+    console.log(character)
 
     /** setting state for weapon */
     const [weapon, setWeapon] = useState("");
@@ -58,6 +58,10 @@ function Person() {
     const [englishLongBowStyle, setEnglishLongBowStyle] = useState("englishLongBow")
     const [flailStyle, setFlailStyle] = useState("flail")
 
+    /** state to change style of the slected player */
+    const [debeauvoirStyle, setDebeauvoirStyle] = useState("debeauvoirStyleSelected")
+    const [sartreStyle, setSartreStyle] = useState("sartreCardStyle")
+    const [camusStyle, setCamusStyle] = useState("camusCardStyle")
 
 
     /** onClick functions to set the value of the skills  */
@@ -188,38 +192,33 @@ function Person() {
     }, [weapon])
 
 
-    /** onClick fucntions for charcters */
-    const moveLeft = () => {
-        position--;
-        console.log(position)
-
-        if (position < 0) {
-            console.log(position)
-
-            position = heroes.length - 1;
-            console.log(position)
-
-        }
-        console.log(position)
-
-        // console.log(position);
-        setCharacter(heroes[position]);
-    }
-
-    const moveRight = () => {
-        position++;
-        if (position > heroes.length - 1) {
-
-            position = 0;
-            console.log(position)
-        }
-        // console.log(position);
-        setCharacter(heroes[position - 1]);
+    const selectDebeauvoir = () => {
+        setCharacter(character1);
+        setDebeauvoirStyle("debeauvoirStyleSelected")
+        setSartreStyle("sartreCardStyle")
+        setCamusStyle("camusCardStyle")
 
     }
 
+    const selectSartre = () => {
+        setCharacter(character2);
+        setSartreStyle("sartreStyleSelected")
+        setDebeauvoirStyle("debeauvoirCardStyle")
+        setCamusStyle("camusCardStyle")
 
-    /** Create  */
+
+    }
+
+    const selectCamus = () => {
+        setCharacter(character3);
+        setCamusStyle("camusStyleSelected")
+        setDebeauvoirStyle("debeauvoirCardStyle")
+        setSartreStyle("sartreCardStyle")
+
+
+    }
+
+     /** Create  */
     const create = () => {
 
         /** creating armed characters based on their names  and the weapon selected */
@@ -304,8 +303,11 @@ function Person() {
         setAttack(0);
         setHealing(0);
         setPoints(14);
-        setCharacter(heroes[position]);
-        setSuccesMessage("");
+        setCharacter(character1);
+        setDebeauvoirStyle("debeauvoirStyleSelected");
+        setSartreStyle("sartreCardStyle");
+        setCamusStyle("camusCardStyle");
+        setSuccesMessage(false);
     }
 
     return (
@@ -374,16 +376,18 @@ function Person() {
                     {
                         succesMessage && <ToastContainer />}
                     <div className="players">
-                        <button className="btnPlayer" onClick={moveLeft}><Icon name="ArrowBarLeft" /></button>
-                        <PlayerCard name={character.characterName} img={character.img} playerDescription={character.playerDescription} />
-                        <button className="btnPlayer" onClick={moveRight}><Icon name="ArrowBarRight" /></button>
-                    </div>
-                    <div className="btns">
-                        <button className="btn create" onClick={create}>Create</button>
-                        <button className="btn reset" onClick={reset}>Reset</button>
+                        <button onClick={selectDebeauvoir} className={debeauvoirStyle}><PlayerCard name={character1.characterName} img={character1.img} playerDescription={character1.playerDescription} /></button>
+                        <button onClick={selectSartre} className={sartreStyle}><PlayerCard name={character2.characterName} img={character2.img} playerDescription={character2.playerDescription} /></button>
+                        <button onClick={selectCamus} className={camusStyle}><PlayerCard name={character3.characterName} img={character3.img} playerDescription={character3.playerDescription} /></button>
                     </div>
                 </div>
 
+                <section className="btns">
+                    <button className="btn create" onClick={create}>Create your hero(ine)</button>
+                    <button className="btn reset" onClick={reset}>Reset</button>
+                </section>
+            </section>
+            <section>
                 <div className="hero">
                     <Hero />
                 </div>
@@ -395,6 +399,7 @@ function Person() {
 
 
 const Wrapper = styled.main`
+
 
 
 
@@ -424,18 +429,17 @@ const Wrapper = styled.main`
 
 .character{
 
-height :auto;
+    min-height :845px;
     display:flex;
     flex-direction:column;
     justify-content: space-around;
     align-items:center;
-    gap:55px;
+    gap:34px;
     
     .skillsAndWeapons{
 
         display:flex;
         justify-content: space-around;
-        margin-top:34px;
 
 
     }
@@ -562,7 +566,9 @@ height :auto;
         display:flex;
         flex-direction:column;
         align-items:center;
+        jusitify-content: space-evenly;
         gap:34px;
+        
 
 
         .players{
@@ -571,6 +577,38 @@ height :auto;
             justify-content: space-evenly;
             align-items:center;
             gap:34px;
+            
+
+            .debeauvoirCardStyle{
+                background-color: transparent;  
+                border: 1px dotted var(--color-primary);    
+                opacity: 0.6;
+            }
+            .debeauvoirStyleSelected{
+                background-color: transparent;  
+                border: 8px solid var(--color-primary);    
+                opacity: 1;
+            }
+            .sartreCardStyle{
+                background-color: transparent;  
+                border: 1px dotted var(--color-primary);    
+                opacity: 0.6;
+            }
+            .sartreStyleSelected{
+                background-color: transparent;  
+                border: 8px solid var(--color-primary);    
+                opacity: 1;
+            }
+            .camusCardStyle{
+                background-color: transparent;  
+                border: 1px dotted var(--color-primary);    
+                opacity: 0.6;
+            }
+            .camusStyleSelected{
+                background-color: transparent;  
+                border: 8px solid var(--color-primary);    
+                opacity: 1;
+            }
 
             .btnPlayer{
                 background-color: transparent;   
@@ -608,14 +646,21 @@ button{
 h3{
 font-size:1.6rem;
 }
+
+
 .btns{
 
     display:flex;
+    flex-direction:column;
     gap:21px;
+    width:82%;
+    margin-top:-21px;
+
+    
 
     .btn{
      
-        width:233px;
+        width:100%;
         height:55px;
         background-color: var(--color-primary);
         border:white;

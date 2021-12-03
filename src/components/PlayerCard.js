@@ -26,7 +26,7 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-gap:13px;
+gap:8px;
 
 
 h4{

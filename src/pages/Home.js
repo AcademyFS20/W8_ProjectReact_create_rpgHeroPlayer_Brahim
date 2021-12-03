@@ -33,7 +33,7 @@ function Home() {
             <section className="caro">
                 <h2>Our costumed game characters</h2>
                 <div>
-                    <Carousel className="carousel" />
+                    <Carousel />
                 </div>
             </section>
             <section className="arms">
@@ -85,7 +85,7 @@ function Home() {
                 <form action="" class="newsletter">
                     <h2 className="newsletterMsg">Connect with us for gaming updates</h2>
                     <div class="newsletter-box">
-                        <Icon name="Envelope"  />
+                        <Icon name="Envelope" />
                         <input
                             class="emailbox"
                             type="email"

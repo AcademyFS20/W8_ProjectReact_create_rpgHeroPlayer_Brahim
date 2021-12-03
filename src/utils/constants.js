@@ -30,26 +30,27 @@ export const navLinks = [
 
 ]
 
+const character1 = {
+    id: 1,
+    img: player1,
+    characterName: "de Beauvoir",
+    playerDescription: "fearless heroine with strength and agility"
+}
 
-export const heroes = [
+const character2 = {
+    id: 2,
+    img: player2,
+    characterName: "Sartre",
+    playerDescription: "Hero with great intellect and courage"
+}
 
-    {
-        id: 1,
-        img: player1,
-        characterName: "de Beauvoir",
-        playerDescription: "fearless heroine with strength and agility"
-    },
 
-    {
-        id: 2,
-        img: player2,
-        characterName: "Sartre",
-        playerDescription: "Hero with great intellect and courage"
-    },
-    {
-        id: 3,
-        img: player3,
-        characterName: "Camus",
-        playerDescription: "A revolutionary that always charge forward"
-    }
-]
+const character3 = {
+    id: 3,
+    img: player3,
+    characterName: "Camus",
+    playerDescription: "A revolutionary that always charge forward"
+}
+export const heroes = [ character1,character2,character3]
+
+

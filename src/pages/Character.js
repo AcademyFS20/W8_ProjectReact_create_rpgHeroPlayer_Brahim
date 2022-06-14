@@ -273,7 +273,7 @@ function Person() {
 
         const hero = { characterName: character.characterName, img: character.img, weapon: weapon, defense: defense, attack: attack, healing: healing, armedImg: imagePrint }
         setLoading(true);
-        axios.post('https://adventum-76250-default-rtdb.firebaseio.com/persons.json', hero)
+        axios.post('https://aventum-test2-default-rtdb.europe-west1.firebasedatabase.app/rpgplayers.json', hero)
             .then(response => {
                 if (response.status !== 200) {
 
@@ -288,9 +288,7 @@ function Person() {
 
         reset()
         toast.success("Your character have been created!", { position: toast.POSITION.TOP_CENTER, theme: "colored" });
-
-        setTimeout(() => { window.location.reload() }, 5000)
-
+        //setTimeout(() => { window.location.reload() }, 5000)
     }
 
 

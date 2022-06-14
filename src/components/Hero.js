@@ -6,13 +6,14 @@ import PlayerCard from './PlayerCard';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-function Hero() {
+function Hero(props) {
     const [loading, setLoading] = useState(false);
-    const [dataRecieved, setdataRecieved] = useState([])
+    const [dataRecieved, setdataRecieved] = useState([]);
+   
 
     useEffect(() => {
         setLoading(true);
-        axios.get('https://adventum-76250-default-rtdb.firebaseio.com/persons.json')
+        axios.get('https://aventum-test2-default-rtdb.europe-west1.firebasedatabase.app/rpgplayers.json')
             .then(response => {
                 // console.log(response.data)
                 const fetchedResults = [];
@@ -23,21 +24,20 @@ function Hero() {
                         id: key,
                     });
                 }
-                // var mainData = Object.values(response.data);
-                // console.log(mainData)
-                // setdataRecieved(mainData)
-                console.log(fetchedResults)
-                setdataRecieved(fetchedResults)
 
+                setdataRecieved(fetchedResults)
                 setLoading(false);
             })
             .catch((error) => { console.log(error) })
-    }, [])
+    }, [dataRecieved]) 
+
+
+    
     const deleteData = () => {
 
         setLoading(true);
         if (window.confirm("are you sure you want to delete all the characters")) {
-            axios.delete('https://adventum-76250-default-rtdb.firebaseio.com/persons.json/', dataRecieved)
+            axios.delete('https://aventum-test2-default-rtdb.europe-west1.firebasedatabase.app/rpgplayers.json', dataRecieved)
                 .then(response => {
 
                     var dataClear = Object.values(response.data)
@@ -47,23 +47,30 @@ function Hero() {
                 })
                 .catch((error) => { console.log(error) })
             toast.success("Your characters have been deleted!", { position: toast.POSITION.TOP_CENTER, theme: "colored" });
-            setTimeout(() => { window.location.reload() }, 5000)
+            setTimeout(() => {
+                setdataRecieved([]);
+            }, 5000)
+
         } else {
             toast.info("nothing have been deleted continue enjoying the platform!", { position: toast.POSITION.TOP_CENTER, theme: "colored" });
         }
     }
 
     const deleteOne = (id) => {
-        console.log(id);
         setLoading(true);
         if (window.confirm("are you sure you want to delete this character")) {
-            axios.delete(`https://adventum-76250-default-rtdb.firebaseio.com/persons/${id}.json` )
+            axios.delete(`https://aventum-test2-default-rtdb.europe-west1.firebasedatabase.app/rpgplayers/${id}.json`)
                 .then(response => {
 
-                    })
+                })
                 .catch((error) => { console.log(error) })
             toast.success("Your characters have been deleted!", { position: toast.POSITION.TOP_CENTER, theme: "colored" });
-            setTimeout(() => { window.location.reload() }, 5000)
+            setTimeout(() => {
+                let newArray = dataRecieved.filter((ele) => id !== ele.id);
+                setdataRecieved(newArray);
+            }, 5000)
+
+
         } else {
             toast.info("nothing have been deleted continue enjoying the platform !", { position: toast.POSITION.TOP_CENTER, theme: "colored" });
         }
@@ -81,7 +88,7 @@ function Hero() {
                     dataRecieved.map((item) => {
 
                         return (
-                            <div className="heroesCreated" key ={item.id}>
+                            <div className="heroesCreated" key={item.id}>
                                 <PlayerCard img={item.armedImg} name={item.characterName} />
                                 <div className="HeroDescription">
                                     <p> Weapon:<span class="font-style">{item.weapon}</span> </p>

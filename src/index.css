@@ -1,0 +1,272 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&display=swap");
+:root {
+  --clr-black: #222;
+  --transition: all 0.3s linear;
+  --spacing: 0.1rem;
+  --radius: 0.25rem;
+  --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  --max-width: 1170px;
+  --fixed-width: 620px;
+
+  --color-primary: rgba(255, 190, 0, 1);
+  --color-primary-4: rgba(255, 180, 0, 0.4);
+  --color-primary-2: rgba(255, 180, 0, 0.2);
+  --color-secondary: rgb(102, 37, 255);
+  --color-secondary-4: rgba(102, 37, 255, 0.4);
+  --color-secondary-2: rgba(102, 37, 255, 0.2);
+
+  --font-base: "Montserrat", "Arial", sans-serif;
+  --font-titles: "Cinzel Decorative", cursive;
+}
+
+/*
+  =============== 
+  Global Styles
+  ===============
+  */
+
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 100%;
+  font-family: var(--font-base);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-titles);
+}
+
+@media screen and (min-width: 320px) and (max-width: 425px) {
+  /* navbar */
+
+  header {
+    /* max-width: 425px; */
+    display: flex;
+    flex-direction: column;
+  }
+
+  .links {
+    visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .btnMenu {
+    position: absolute;
+    right: 21px;
+    background-color: transparent;
+    visibility: visible;
+  }
+
+  /* footer */
+  footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    min-height: 377px;
+    background-color: rgba(22, 22, 22, 1);
+    color: white;
+    padding: 13px;
+  }
+
+  .links {
+    width: 100%;
+    font-weight: bold;
+    display: none;
+    height: 5px;
+  }
+
+  .infos {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 13px;
+  }
+
+  .contacts {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 13px;
+  }
+
+  .contactInfos {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+  }
+
+  .sitemap {
+    visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 21px;
+    height: 55px;
+  }
+  .social {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    gap: 13px;
+  }
+
+  .footerTitle {
+    color: var(--color-primary);
+  }
+
+  /*about us */
+
+  .intro {
+    min-height: 377px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .pageTitle {
+    font-size: 3rem;
+  }
+
+  .aboutText {
+    min-height: 612px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 13px;
+    width: 100%;
+    padding: 13px 0 13px 0;
+  }
+
+  .paraAboutUs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 34px;
+    width: 100%;
+  }
+
+  .team {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 13px 0 13px 0;
+  }
+
+  .teamMembers {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 34px;
+    width: 100%;
+  }
+
+  .teamMember {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 34px;
+  }
+
+  /* faq page */
+  .faqTitle {
+    font-size: 3rem;
+    padding: 0 13px 0 13px;
+  }
+
+  /* Homepage */
+
+  .armsText {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 21px;
+  }
+
+  .armsCards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 21px;
+  }
+
+  .newsletter-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 34px;
+  }
+
+  /* chracter */
+
+  .characterTitle {
+    font-size: 3rem;
+    padding: 0 13px 0 13px;
+    
+  }
+
+  .skillsAndWeapons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    gap:34px;
+  }
+
+  .skills {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .pickWeapon{
+    align-items: center;
+  }
+
+  .weapons{
+        margin: 0 0 0 -55px;
+  }
+
+  .btns {
+    display: flex;
+    flex-direction: column;
+  }
+  .hero{
+    display: flex;
+    flex-direction: column;
+  }
+  .charctersCreated{
+    display: flex;
+    flex-direction: column;
+    gap: 21px;
+  }
+
+}

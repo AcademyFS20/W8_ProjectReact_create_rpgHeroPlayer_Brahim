@@ -2,6 +2,10 @@
 An app in which the user can create an RPG hero. The user has the option to pick an avatar from a list of heroes but he can customize it's powers, and equipped it from a list of weapons.
 then the hero can be saved, deleted or edited.
 
+# the webapp
+visit at : https://belghiti-brahim.github.io/adventum/#/ 
+some functionality may not work since I'm linking a testing realtime database on firebase 
+
 the herosection of the home page
 ![adventum home page](https://user-images.githubusercontent.com/91473510/173666469-ad3867df-063f-406e-baee-0565bfa6ee24.png)
 
